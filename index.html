@@ -44,7 +44,7 @@
   }
 
   .nav-logo { display: flex; align-items: center; gap: 10px; }
-  .nav-logo img { height: 38px; object-fit: contain; }
+  .nav-logo img { height: 52px; object-fit: contain; }
 
   .nav-links {
     display: flex; gap: 8px; list-style: none;
@@ -56,6 +56,58 @@
     letter-spacing: 0.02em;
   }
   .nav-links a:hover { background: var(--light-gray); color: var(--accent); }
+
+  /* DROPDOWN */
+  .nav-links li { position: relative; }
+  .nav-links li.has-dropdown > a {
+    display: flex; align-items: center; gap: 5px;
+  }
+  .nav-links li.has-dropdown > a::after {
+    content: '';
+    display: inline-block;
+    width: 6px; height: 6px;
+    border-right: 1.5px solid currentColor;
+    border-bottom: 1.5px solid currentColor;
+    transform: rotate(45deg) translateY(-2px);
+    transition: transform 0.2s;
+  }
+  .nav-links li.has-dropdown:hover > a::after {
+    transform: rotate(-135deg) translateY(-2px);
+  }
+  .dropdown-menu {
+    display: none;
+    position: absolute; top: calc(100% + 8px); left: 0;
+    background: white;
+    border: 1px solid var(--mid-gray);
+    border-radius: 10px;
+    min-width: 290px;
+    padding: 10px;
+    box-shadow: 0 12px 40px rgba(13,31,60,0.13);
+    z-index: 200;
+    animation: dropIn 0.18s ease;
+  }
+  .nav-links li.has-dropdown:hover .dropdown-menu { display: block; }
+  @keyframes dropIn {
+    from { opacity: 0; transform: translateY(-6px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .dropdown-menu a {
+    display: flex; align-items: flex-start; gap: 12px;
+    padding: 10px 12px; border-radius: 7px;
+    font-size: 14px; font-weight: 400; color: var(--navy);
+    text-decoration: none; transition: background 0.15s;
+    background: transparent;
+  }
+  .dropdown-menu a:hover { background: var(--light-gray); color: var(--accent); }
+  .dropdown-icon {
+    width: 32px; height: 32px; flex-shrink: 0;
+    background: rgba(28,86,176,0.08); border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 15px;
+  }
+  .dropdown-text .dtitle { font-weight: 600; font-size: 13px; color: var(--navy); }
+  .dropdown-text .ddesc { font-size: 12px; color: var(--text-muted); margin-top: 1px; line-height: 1.4; }
+  .dropdown-divider { border: none; border-top: 1px solid var(--mid-gray); margin: 6px 4px; }
 
   .nav-actions { display: flex; align-items: center; gap: 12px; }
   .btn-outline {
@@ -577,7 +629,54 @@
   <ul class="nav-links">
     <li><a href="#">Products</a></li>
     <li><a href="#">Industries</a></li>
-    <li><a href="#">Solutions</a></li>
+    <li class="has-dropdown">
+      <a href="#">Services</a>
+      <div class="dropdown-menu">
+        <a href="#">
+          <div class="dropdown-icon">&#9881;&#65039;</div>
+          <div class="dropdown-text">
+            <div class="dtitle">ERP Implementation</div>
+            <div class="ddesc">End-to-end enterprise resource planning deployment</div>
+          </div>
+        </a>
+        <a href="#">
+          <div class="dropdown-icon">&#9729;&#65039;</div>
+          <div class="dropdown-text">
+            <div class="dtitle">Cloud Migration</div>
+            <div class="ddesc">Seamless transition to scalable cloud infrastructure</div>
+          </div>
+        </a>
+        <a href="#">
+          <div class="dropdown-icon">&#129302;</div>
+          <div class="dropdown-text">
+            <div class="dtitle">AI &amp; Automation</div>
+            <div class="ddesc">Intelligent process automation and machine learning</div>
+          </div>
+        </a>
+        <hr class="dropdown-divider">
+        <a href="#">
+          <div class="dropdown-icon">&#128202;</div>
+          <div class="dropdown-text">
+            <div class="dtitle">Business Intelligence</div>
+            <div class="ddesc">Real-time analytics and data-driven insights</div>
+          </div>
+        </a>
+        <a href="#">
+          <div class="dropdown-icon">&#128272;</div>
+          <div class="dropdown-text">
+            <div class="dtitle">Security &amp; Compliance</div>
+            <div class="ddesc">Enterprise-grade protection and regulatory compliance</div>
+          </div>
+        </a>
+        <a href="#">
+          <div class="dropdown-icon">&#129309;</div>
+          <div class="dropdown-text">
+            <div class="dtitle">Managed Services</div>
+            <div class="ddesc">24/7 support, monitoring and system maintenance</div>
+          </div>
+        </a>
+      </div>
+    </li>
     <li><a href="#">Partners</a></li>
     <li><a href="#">Company</a></li>
     <li><a href="#">Contact</a></li>
